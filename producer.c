@@ -1,6 +1,5 @@
-#include "getcurrenttime.h"
-#include "globalvariables.h"
-#include "myqueue.h"
+#include "global.h"
+#include "buffer.h"
 #include "producer.h"
 #include "tands.h"
 

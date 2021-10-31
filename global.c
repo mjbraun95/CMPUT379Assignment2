@@ -1,5 +1,4 @@
-#include "globalvariables.h"
-#include "getcurrenttime.h"
+#include "global.h"
 
 int *buffer;
 int buffer_index;

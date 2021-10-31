@@ -1,5 +1,5 @@
-#ifndef __INCLUDE_GLOBALVARIABLES_H__
-#define __INCLUDE_GLOBALVARIABLES_H__
+#ifndef __INCLUDE_GLOBAL_H__
+#define __INCLUDE_GLOBAL_H__
 
 #include <stdio.h>
 #include <semaphore.h>

@@ -1,7 +1,6 @@
 #include "consumer.h"
-#include "getcurrenttime.h"
-#include "globalvariables.h"
-#include "myqueue.h"
+#include "global.h"
+#include "buffer.h"
 #include "tands.h"
 
 #include <pthread.h>

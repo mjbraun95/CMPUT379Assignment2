@@ -1,5 +1,5 @@
-#ifndef __INCLUDE__MYQUEUE_H__
-#define __INCLUDE_MYQUEUE_H__
+#ifndef __INCLUDE_BUFFER_H__
+#define __INCLUDE_BUFFER_H__
 
 extern void push(int a);
 extern int pop();

@@ -1,6 +1,6 @@
-#include "globalvariables.h"
+#include "global.h"
 #include <time.h>
-#include "myqueue.h"
+#include "buffer.h"
 
 
 //EDIT
@@ -8,7 +8,7 @@
 void push(int a) {
     buffer[buffer_tail] = a;
     buffer_tail++;
-    if (buffer_tail == buffer_length) {
+    if (buffer_length == buffer_tail) {
         buffer_tail = 0;
     }
 }
@@ -17,7 +17,7 @@ int pop() {
     int r = buffer[buffer_index];
     buffer[buffer_index] = 0;
     buffer_index++;
-    if (buffer_index == buffer_length) {
+    if (buffer_length == buffer_index) {
         buffer_index = 0;
     }
     return r;
