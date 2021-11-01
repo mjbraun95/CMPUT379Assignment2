@@ -51,31 +51,21 @@ void* consume(void* argsp) {
     int task;
 
     while(1) {     
-        
         (tinfo->num_asks)++;
-        
         log_ask(tinfo->thread_num);
-
-        sem_wait(&full); //p(full)
-        pthread_mutex_lock(&buffer_mutex); //p(mutex)
+        sem_wait(&full);
+        pthread_mutex_lock(&buffer_mutex);
         task = pop();
-        pthread_mutex_unlock(&buffer_mutex); //v(mutex)
-        sem_post(&empty); //v empty
-
-        //call task
+        pthread_mutex_unlock(&buffer_mutex);
+        sem_post(&empty);
         if(task == -1) {
-            //printf("dying: i am thread %d\n",tinfo->thread_num);
             break;
         }
-        //printf("i am thread %d taking task %d\n",tinfo->thread_num,task);
+        // Thread takes task
         tinfo->num_receives++;
-
         log_receive(tinfo->thread_num,task);
-
         Trans(task);
-
         log_complete(tinfo->thread_num,task);
-
         tinfo->num_completes++;
     }
     return (void *) 0;

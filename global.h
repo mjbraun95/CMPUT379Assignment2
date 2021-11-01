@@ -11,25 +11,22 @@ extern int *buffer;
 extern int buffer_index;
 extern int buffer_tail;
 extern int buffer_length;
-extern sem_t empty; // counts how many empty spaces in buffer
-extern sem_t full; // counts filled spaces in buffer
+extern sem_t empty; // # of empty spaces in buffer
+extern sem_t full; // # of occupied spaces in buffer
 extern pthread_mutex_t buffer_mutex;
-
-// extern int total_sleeps;
-// extern int total_works;
 
 // Log file
 extern FILE* log_file;
 extern pthread_mutex_t logfile_mutex;
 
-extern struct timespec start; // when program starts in ns since epoch
+extern struct timespec start; // Starting time of program
 
-struct thread_info {    /* Used as argument to thread_start() */
-    pthread_t thread_id;        /* ID returned by pthread_create() */
-    int thread_num;       /* Application-defined thread # */
+struct thread_info {    
+    pthread_t thread_id;        
+    int thread_num;       
     int num_asks;
-    int num_receives;      // assigned tasks
-    int num_completes;   // completed tasks
+    int num_receives;      
+    int num_completes;   
 };
 
-#endif //__INCLUDE_GLOBALVARIABLES_H__
+#endif

@@ -30,13 +30,14 @@ int total_sleeps, total_works, total_asks, total_receives, total_completes = 0;
 
 int main(int argc, char** argv[]) {
     clock_gettime(CLOCK_REALTIME, &start);
-    printf("argc: %i\n", argc); //debug
 
-    // Read args to get logfile name + number of threads
+    // Parse args to get logfile name + number of threads
     char log_file_name[15] = "prodcon.";
+    // If ID is given
     if(argc = 2) {
         strcat(log_file_name, argv[2]);
     }
+    // Otherwise assign default value of 0
     else {
         strcat(log_file_name, "0");
     }
@@ -73,22 +74,21 @@ int main(int argc, char** argv[]) {
     // Run producer
     produce(&total_sleeps, &total_works);
     for (i=0; i<(num_threads*2); i++) {
+        // Occupy a buffer index when available
         sem_wait(&empty);
         pthread_mutex_lock(&buffer_mutex);
-        //EDIT
         // Kill thread
         push(-1);
         pthread_mutex_unlock(&buffer_mutex);
         sem_post(&full);
     }
 
-    //EDIT
+    //Wait for consumer threads to terminate
     int join;
     for (i=0; i<num_threads; i++) {
-        //printf("joining thread %d\n",tinfo[i].thread_num);
         join = pthread_join(tinfo[i].thread_id ,NULL);
         if (join != 0) {
-            perror("Error");
+            perror("Error executing pthread_join()");
         }
     }
 

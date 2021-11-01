@@ -6,4 +6,4 @@ void log_receive(int threadnum, int task);
 void log_complete(int threadnum, int task);
 void* consume(void* argsp);
 
-#endif //__INCLUDE_CONSUMER_H__
+#endif

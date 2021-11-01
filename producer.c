@@ -42,7 +42,6 @@ void produce(int* total_sleeps, int* total_works) {
     while (1) {
         char input;
         input = getchar();
-        printf("input: %c\n",input); //debug
         // Exit at end of input file
         if (input == EOF) {
             break;
@@ -50,7 +49,6 @@ void produce(int* total_sleeps, int* total_works) {
         else if(input == 'S') {
             char* number;
             getline(&number, &input_size, stdin);
-            printf("S number: %s\n", number); //debug
             int num = atoi(number);
             log_sleep(num);
             Sleep(num);
@@ -59,9 +57,9 @@ void produce(int* total_sleeps, int* total_works) {
         else if(input =='T') {
             char* number;
             getline(&number, &input_size, stdin);
-            printf("T number: %s\n", number); //debug
             int num = atoi(number);
             
+            // Occupy a buffer index when available
             sem_wait(&empty);
             pthread_mutex_lock(&buffer_mutex);
             push(num);
@@ -79,6 +77,4 @@ void produce(int* total_sleeps, int* total_works) {
     }
     (*total_sleeps) = num_sleeps;
     (*total_works) = num_works;
-    // printf("total_sleeps updated to %i\n", total_sleeps);
-    // printf("total_works updated to %i\n", total_works);
 }
